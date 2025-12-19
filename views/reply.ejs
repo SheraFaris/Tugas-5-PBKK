@@ -3,14 +3,14 @@
 <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #6c757d;">
     <div style="font-size: 0.9em; color: #666; margin-bottom: 10px;">Replying to:</div>
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-        <strong>John Doe</strong>
-        <span style="font-size: 0.8em; color: #666;">2024-01-15 10:30 AM</span>
+        <strong><%= post.posterName %></strong>
+        <span style="font-size: 0.8em; color: #666;"><%= new Date(post.createdAt).toLocaleString() %></span>
     </div>
-    <div>This is the original post content that you are replying to. It contains some interesting information.</div>
+    <div><%= post.content %></div>
 </div>
 
 <form method="POST" action="/posts">
-    <input type="hidden" name="replyToId" value="123">
+    <input type="hidden" name="replyToId" value="<%= post.id %>">
 
     <div class="form-group">
         <label for="posterName">Your Name:</label>
@@ -24,6 +24,6 @@
 
     <div>
         <button type="submit" class="btn">Post Reply</button>
-        <a href="/posts/123" class="btn" style="background-color: #6c757d;">Cancel</a>
+        <a href="/posts/<%= post.id %>" class="btn" style="background-color: #6c757d;">Cancel</a>
     </div>
 </form>
